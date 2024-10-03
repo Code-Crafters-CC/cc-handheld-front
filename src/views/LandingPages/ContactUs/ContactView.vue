@@ -71,44 +71,67 @@ onMounted(() => {
                   please email hello@creative-tim.com or contact using our
                   contact form.
                 </p>
-                <form id="contact-form" method="post" autocomplete="off">
-                  <div class="card-body p-0 my-3">
+                <form
+                  role="form"
+                  id="contact-form"
+                  method="post"
+                  autocomplete="off"
+                >
+                  <div class="card-body">
                     <div class="row">
                       <div class="col-md-6">
                         <MaterialInput
-                          class="input-group-static mb-4"
+                          class="input-group-dynamic mb-4"
+                          :label="{ text: 'First Name', class: 'form-label' }"
                           type="text"
-                          label="Full Name"
-                          placeholder="Full Name"
                         />
                       </div>
-                      <div class="col-md-6 ps-md-2">
+                      <div class="col-md-6 ps-2">
                         <MaterialInput
-                          class="input-group-static mb-4"
-                          type="email"
-                          label="Email"
-                          placeholder="hello@creative-tim.com"
+                          class="input-group-dynamic"
+                          :label="{ text: 'Last Name', class: 'form-label' }"
+                          type="text"
+                        />
+                      </div>
+                      <div class="col-md-6 ps-2">
+                        <MaterialInput
+                          class="input-group-dynamic"
+                          :label="{ text: 'Username', class: 'form-label' }"
+                          type="text"
                         />
                       </div>
                     </div>
-                    <div class="form-group mb-0 mt-md-0 mt-4">
-                      <MaterialTextArea
-                        id="message"
-                        class="input-group-static mb-4"
-                        :rows="6"
-                        placeholder="Describe your problem in at least 250 characters"
-                        >How can we help you?</MaterialTextArea
-                      >
+                    <div class="mb-4">
+                      <MaterialInput
+                        class="input-group-dynamic"
+                        :label="{ text: 'Email Address', class: 'form-label' }"
+                        type="email"
+                      />
                     </div>
-                    <div class="row">
-                      <div class="col-md-12 text-center">
-                        <MaterialButton
-                          variant="gradient"
-                          color="success"
-                          class="mt-3 mb-0"
-                          >Send Message</MaterialButton
+                    <div class="mb-4">
+                      <MaterialInput
+                        class="input-group-dynamic"
+                        :label="{ text: 'Password', class: 'form-label' }"
+                        type="email"
+                      />
+                    </div>
+                    <div class="mb-4">
+                      <select
+                        id="rol"
+                        class="form-select"
+                        :items="listRol"
+                        :fields="fieldsRol"
+                        v-model="rol"
+                      >
+                        <option selected>Selecciona rol de usuario</option>
+                        <option
+                          v-for="lr in listRol"
+                          v-bind:key="lr.id"
+                          v-bind:value="lr.id"
                         >
-                      </div>
+                          {{ lr.rol_name }}
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </form>
