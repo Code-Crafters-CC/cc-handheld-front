@@ -31,7 +31,7 @@ const router = createRouter({
       component: AboutView,
     },
     {
-      path: "/pages/landing-pages/contact-us",
+      path: "/pages/history",
       name: "contactus",
       component: ContactView,
     },
