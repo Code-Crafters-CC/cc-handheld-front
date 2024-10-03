@@ -6,7 +6,7 @@ import DefaultNavbar from "../../../examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "../../../examples/footers/FooterDefault.vue";
 
 //image
-import bg0 from "@/assets/img/bg9.jpg";
+import bg0 from "@/assets/img/vue-mk-header.jpg";
 
 //dep
 import Typed from "typed.js";
@@ -14,8 +14,6 @@ import Typed from "typed.js";
 //sections
 import Information from "./Sections/AboutInformation.vue";
 import AboutTeam from "./Sections/AboutTeam.vue";
-import Featuring from "./Sections/AboutFeaturing.vue";
-import Newsletter from "./Sections/AboutNewsletter.vue";
 
 const body = document.getElementsByTagName("body")[0];
 //hooks
@@ -60,35 +58,19 @@ onUnmounted(() => {
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center mx-auto my-auto">
             <h1 class="text-white">
-              Work with an amazing <span class="text-white" id="typed"></span>
+              Adiós a <span class="text-white" id="typed"></span>
             </h1>
             <div id="typed-strings">
-              <h1>team</h1>
-              <h1>design</h1>
-              <h1>tool</h1>
+              <h1>las plagas</h1>
+              <h1>las alimañas</h1>
+              <h1>los problemas</h1>
             </div>
             <p class="lead mb-4 text-white opacity-8">
-              We’re constantly trying to express ourselves and actualize our
-              dreams. If you have the opportunity to play this game
+              Nos especializamos en tratar con plagas.
             </p>
             <button type="submit" class="btn bg-white text-dark">
-              Create Account
+              Crear Cuenta
             </button>
-            <h6 class="text-white mb-2 mt-5">Find us on</h6>
-            <div class="d-flex justify-content-center">
-              <a href="javascript:;"
-                ><i class="fab fa-facebook text-lg text-white me-4"></i
-              ></a>
-              <a href="javascript:;"
-                ><i class="fab fa-instagram text-lg text-white me-4"></i
-              ></a>
-              <a href="javascript:;"
-                ><i class="fab fa-twitter text-lg text-white me-4"></i
-              ></a>
-              <a href="javascript:;"
-                ><i class="fab fa-google-plus text-lg text-white"></i
-              ></a>
-            </div>
           </div>
         </div>
       </div>
@@ -97,8 +79,6 @@ onUnmounted(() => {
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <Information />
     <AboutTeam />
-    <Featuring />
-    <Newsletter />
   </div>
   <DefaultFooter />
 </template>

@@ -7,7 +7,7 @@ defineProps({
     logo: String,
     route: "",
     default: () => ({
-      name: "Material Kit 2",
+      name: "Fumigations / Material Kit 2",
       logo: logoDark,
       route: "/"
     })
@@ -39,94 +39,13 @@ defineProps({
       }
     ]
   },
-  menus: {
-    type: Array,
-    name: String,
-    items: {
-      type: Array,
-      name: String,
-      href: String
-    },
-    default: () => [
-      {
-        name: "company",
-        items: [
-          {
-            name: "about us",
-            href: "https://www.creative-tim.com/presentation"
-          },
-          {
-            name: "freebies",
-            href: "https://www.creative-tim.com/templates/free"
-          },
-          {
-            name: "premium tools",
-            href: "https://www.creative-tim.com/templates/premium"
-          },
-          { name: "blog", href: "https://www.creative-tim.com/blog" }
-        ]
-      },
-      {
-        name: "resources",
-        items: [
-          { name: "illustrations", href: "https://iradesign.io/" },
-          {
-            name: "bits & snippets",
-            href: "https://www.creative-tim.com/bits"
-          },
-          {
-            name: "affiliate program",
-            href: "https://www.creative-tim.com/affiliates/new"
-          }
-        ]
-      },
-      {
-        name: "help & support",
-        items: [
-          {
-            name: "contact us",
-            href: "https://www.creative-tim.com/contact-us"
-          },
-          {
-            name: "knowledge center",
-            href: "https://www.creative-tim.com/knowledge-center"
-          },
-          {
-            name: "custom development",
-            href: "https://services.creative-tim.com/"
-          },
-          {
-            name: "sponsorships",
-            href: "https://www.creative-tim.com/sponsorships"
-          }
-        ]
-      },
-      {
-        name: "legal",
-        items: [
-          {
-            name: "terms & conditions",
-            href: "https://www.creative-tim.com/terms"
-          },
-          {
-            name: "privacy policy",
-            href: "https://www.creative-tim.com/privacy"
-          },
-          {
-            name: "licenses (EULA)",
-            href: "https://www.creative-tim.com/license"
-          }
-        ]
-      }
-    ]
-  }
 });
 </script>
 <template>
   <footer class="footer pt-5 mt-5">
     <div class="container">
-      <div class="row">
-        <div class="col-md-3 mb-4 ms-auto">
+      <div class="row align-self-center">
+        <div class="col-12">
           <div>
             <a :href="brand.route">
               <img :src="brand.logo" class="mb-3 footer-logo" alt="main_logo" />
@@ -171,9 +90,9 @@ defineProps({
             <p class="text-dark my-4 text-sm font-weight-normal">
               All rights reserved. Copyright ©
               {{ new Date().getFullYear() }}
-              Material Kit by
-              <a href="https://www.creative-tim.com" target="_blank"
-                >Creative Tim</a
+              FUMIGATION SYSTEM by
+              <a href="https://www.facebook.com/christian.requena.79" target="_blank"
+                >Cristian Requena</a
               >.
             </p>
           </div>

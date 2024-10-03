@@ -15,11 +15,10 @@ import marquez from "@/assets/img/ivana-square.jpg";
       <div class="row">
         <div class="col-md-8 text-start mb-5 mt-5">
           <h3 class="text-white z-index-1 position-relative">
-            The Executive Team
+            Nuestro equipo altamente efectivo
           </h3>
           <p class="text-white opacity-8 mb-0">
-            There’s nothing I really wanted to do in life that I wasn’t able to
-            get good at. That’s my skill.
+            No hay nada que no podamos hacer, mientras lo hagamos juntos.
           </p>
         </div>
       </div>
