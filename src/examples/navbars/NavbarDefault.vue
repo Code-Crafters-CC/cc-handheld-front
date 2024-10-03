@@ -2,6 +2,7 @@
 import { RouterLink } from "vue-router";
 import { ref, watch } from "vue";
 import { useWindowsWidth } from "../../assets/js/useWindowsWidth";
+import {useAppStore} from '../../stores/index'
 
 // images
 import ArrDark from "@/assets/img/down-arrow-dark.svg";
@@ -136,11 +137,6 @@ watch(
       >
         Material Design
       </RouterLink>
-      <a
-        href="https://www.creative-tim.com/product/vue-material-kit-pro"
-        class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
-        >Buy Now</a
-      >
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
@@ -175,7 +171,7 @@ watch(
                 :class="getTextColor()"
                 >dashboard</i
               >
-              Pages
+              Páginas
               <img
                 :src="getArrowColor()"
                 alt="down-arrow"
@@ -198,36 +194,31 @@ watch(
                       <div
                         class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1"
                       >
-                        Landing Pages
+                        Páginas Principales
                       </div>
                       <RouterLink
                         :to="{ name: 'about' }"
                         class="dropdown-item border-radius-md"
                       >
-                        <span>About Us</span>
+                        <span>Home</span>
                       </RouterLink>
                       <RouterLink
                         :to="{ name: 'contactus' }"
                         class="dropdown-item border-radius-md"
+                        v-if="useAppStore.token"
                       >
-                        <span>Contact Us</span>
-                      </RouterLink>
-                      <RouterLink
-                        :to="{ name: 'author' }"
-                        class="dropdown-item border-radius-md"
-                      >
-                        <span>Author</span>
+                        <span>Historial</span>
                       </RouterLink>
                       <div
                         class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
                       >
-                        Account
+                        Cuenta
                       </div>
                       <RouterLink
                         :to="{ name: 'signin-basic' }"
                         class="dropdown-item border-radius-md"
                       >
-                        <span>Sign In</span>
+                        <span>Login</span>
                       </RouterLink>
                     </div>
                   </div>

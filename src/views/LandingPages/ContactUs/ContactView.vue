@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted } from "vue";
-
+import { ref, onMounted } from "vue";
+import axios from "axios";
 //example components
 import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "@/examples/footers/FooterDefault.vue";
@@ -15,22 +15,35 @@ import MaterialButton from "@/components/MaterialButton.vue";
 
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
+
+const listHistory = ref([]);
+const fields = ref(['id', 'product', 'used_stock']);
+
+const listarHistorial = async () => {
+  try {
+    await axios.get('history/').then(response => {
+      listHistory.value = response.data;
+      console.log(response);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 onMounted(() => {
   setMaterialInput();
+  listarHistorial();
 });
 </script>
 <template>
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
-        <DefaultNavbar
-          :sticky="true"
-          :action="{
-            route: 'https://www.creative-tim.com/product/vue-material-kit-pro',
-            color: 'bg-gradient-success',
-            label: 'Buy Now',
-          }"
-        />
+        <DefaultNavbar :sticky="true" :action="{
+          route: 'https://www.creative-tim.com/product/vue-material-kit-pro',
+          color: 'bg-gradient-success',
+        }" />
       </div>
     </div>
   </div>
@@ -39,102 +52,46 @@ onMounted(() => {
       <div class="container">
         <div class="row">
           <div
-            class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column"
-          >
-            <div
-              class="position-relative h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center"
+            class="col-1 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 start-0 text-center justify-content-center flex-column">
+            <div class="position-relative h-100 m-9 px-7 border-radius-lg d-flex flex-column justify-content-center"
               :style="{
                 backgroundImage: `url(${image})`,
                 backgroundSize: 'cover',
-              }"
-              loading="lazy"
-            ></div>
+              }" loading="lazy"></div>
           </div>
-          <div
-            class="mt-8 col-xl-5 col-lg-6 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5"
-          >
-            <div
-              class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5"
-            >
-              <div
-                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
-              >
-                <div
-                  class="bg-gradient-success shadow-success border-radius-lg p-3"
-                >
-                  <h3 class="text-white text-success mb-0">Contact us</h3>
+          <div class="mt-3 col-xl-10 col-lg-10 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-sm-0">
+            <div class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5">
+              <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent">
+                <div class="bg-gradient-success shadow-success border-radius-lg p-3">
+                  <h3 class="text-white text-success mb-0">Historial de consumo</h3>
                 </div>
               </div>
+              <!--contenido de historial de consumo-->
               <div class="card-body">
-                <p class="pb-3">
-                  For further questions, including partnership opportunities,
-                  please email hello@creative-tim.com or contact using our
-                  contact form.
-                </p>
-                <form
-                  role="form"
-                  id="contact-form"
-                  method="post"
-                  autocomplete="off"
-                >
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <MaterialInput
-                          class="input-group-dynamic mb-4"
-                          :label="{ text: 'First Name', class: 'form-label' }"
-                          type="text"
-                        />
-                      </div>
-                      <div class="col-md-6 ps-2">
-                        <MaterialInput
-                          class="input-group-dynamic"
-                          :label="{ text: 'Last Name', class: 'form-label' }"
-                          type="text"
-                        />
-                      </div>
-                      <div class="col-md-6 ps-2">
-                        <MaterialInput
-                          class="input-group-dynamic"
-                          :label="{ text: 'Username', class: 'form-label' }"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div class="mb-4">
-                      <MaterialInput
-                        class="input-group-dynamic"
-                        :label="{ text: 'Email Address', class: 'form-label' }"
-                        type="email"
-                      />
-                    </div>
-                    <div class="mb-4">
-                      <MaterialInput
-                        class="input-group-dynamic"
-                        :label="{ text: 'Password', class: 'form-label' }"
-                        type="email"
-                      />
-                    </div>
-                    <div class="mb-4">
-                      <select
-                        id="rol"
-                        class="form-select"
-                        :items="listRol"
-                        :fields="fieldsRol"
-                        v-model="rol"
-                      >
-                        <option selected>Selecciona rol de usuario</option>
-                        <option
-                          v-for="lr in listRol"
-                          v-bind:key="lr.id"
-                          v-bind:value="lr.id"
-                        >
-                          {{ lr.rol_name }}
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </form>
+                <div class="table-responsive" style="max-height: 500px; overflow-y:hidden;">
+                  <table class="table table-striped " :items="listHistory" :fields="fields">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Producto utilizado</th>
+                        <th scope="col">Tipo de producto</th>
+                        <th scope="col">Producto utilizado</th>
+                        <th scope="col">Producto restante</th>
+                        <th scope="col">Fecha de uso</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="(lh, i) in listHistory" v-bind:key="lh.id">
+                        <td>{{ lh.id }}</td>
+                        <td>{{lh.product['product_name']}}</td>
+                        <td>{{lh.product.product_type['product_type_name']}}</td>
+                        <td>{{ lh.used_stock }}</td>
+                        <td>{{lh.product['stock']}}</td>
+                        <td>{{lh.insert_date}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
