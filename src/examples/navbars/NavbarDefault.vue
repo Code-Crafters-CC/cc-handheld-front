@@ -115,7 +115,7 @@ watch(
             ? 'text-dark font-weight-bolder ms-sm-3'
             : 'text-white font-weight-bolder ms-sm-3'
         ]"
-        :to="{ name: 'presentation' }"
+        :to="{ name: 'about' }"
         rel="tooltip"
         title="Designed and Coded by Creative Tim"
         data-placement="bottom"
