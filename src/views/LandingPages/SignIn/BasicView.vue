@@ -45,12 +45,12 @@ const createUser = async () => {
       username: username.value,
       password: password.value,
       rol: rol.value,
-    });
+    }); 
+    toggleForms();
     console.log(response);
   } catch (error) {
     console.log(error);
   }
-  listarRol(); // Llamada a listar roles después de crear un usuario
 };
 
 // Método para listar roles
@@ -78,12 +78,16 @@ const login = () => {
 
 // Función para manejar el registro
 const register = () => {
-  console.log("Registrar usuario:", newUsername.value, newPassword.value, email.value);
+  console.log(
+    "Registrar usuario:",
+    newUsername.value,
+    newPassword.value,
+    email.value
+  );
   // Una vez que el registro es exitoso, volver a mostrar el formulario de login
   showLogin = true;
   showRegister = false;
 };
-
 
 // Ejecutar listarRol cuando se monta el componente
 onMounted(() => {
@@ -175,7 +179,7 @@ onMounted(() => {
                     <a
                       href="#"
                       class="text-success text-gradient font-weight-bold"
-                      @click = "toggleForms"
+                      @click="toggleForms"
                       >Sign up</a
                     >
                   </p>
@@ -188,20 +192,24 @@ onMounted(() => {
 
       <!-- Form Sign up -->
       <div class="container py-4" v-if="showRegister">
-        <div class="row">
+        <div class="row justify-content-center">
           <div
-            class="mt-8 col-xl-5 col-lg-6 col-md-7 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5"
+            class="mt-8 col-xl-5 col-lg-6 col-md-7 d-flex flex-column mx-auto"
           >
             <div
               class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5"
             >
               <div
-                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
+                class="card-header p-0 position-relative mt-n4 mx-3 z-index-2"
               >
                 <div
                   class="bg-gradient-success shadow-success border-radius-lg p-3"
                 >
-                  <h3 class="text-white text-success mb-0">Registro de usuario</h3>
+                  <h3
+                    class="text-white font-weight-bolder text-center mt-2 mb-0"
+                  >
+                    Registro de usuario
+                  </h3>
                 </div>
               </div>
               <div class="card-body">
@@ -210,62 +218,79 @@ onMounted(() => {
                   id="contact-form"
                   method="post"
                   autocomplete="off"
+                  @submit.prevent = "onsubmit"
                 >
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-6">
                         <MaterialInput
-                          class="input-group-dynamic mb-4"
-                          :label="{ text: 'First Name', class: 'form-label' }"
+                          class="input-group-static mb-4"
+                          label="First Name"
                           type="text"
+                          placeholder="eg. Thomas"
                         />
                       </div>
                       <div class="col-md-6 ps-2">
                         <MaterialInput
-                          class="input-group-dynamic"
-                          :label="{ text: 'Last Name', class: 'form-label' }"
+                          class="input-group-static mb-4"
+                          label="Last Name"
                           type="text"
+                          placeholder="eg. Shelby"
                         />
                       </div>
                       <div class="col-md-6 ps-2">
                         <MaterialInput
-                          class="input-group-dynamic"
-                          :label="{ text: 'Username', class: 'form-label' }"
+                          class="input-group-static mb-4"
+                          label="Username"
                           type="text"
+                          placeholder="eg. Some username"
                         />
                       </div>
-                    </div>
-                    <div class="mb-4">
-                      <MaterialInput
-                        class="input-group-dynamic"
-                        :label="{ text: 'Email Address', class: 'form-label' }"
-                        type="email"
-                      />
-                    </div>
-                    <div class="mb-4">
-                      <MaterialInput
-                        class="input-group-dynamic"
-                        :label="{ text: 'Password', class: 'form-label' }"
-                        type="email"
-                      />
-                    </div>
-                    <div class="mb-4">
-                      <label for="rol" class="form-label">Selecciona un rol de usuario</label>
-                      <select
-                        id="rol"
-                        class="form-select"
-                        :items="listRol"
-                        :fields="fieldsRol"
-                        v-model="rol"
-                      >
-                        <option
-                          v-for="lr in listRol"
-                          v-bind:key="lr.id"
-                          v-bind:value="lr.id"
+                      <div class="col-md-6 ps-2">
+                        <MaterialInput
+                          class="input-group-static mb-4"
+                          label="Email Address"
+                          type="text"
+                          placeholder="eg. email@gmail.com"
+                        />
+                      </div>
+                      <div class="col-md-6 ps-2">
+                        <MaterialInput
+                          class="input-group-static mb-4"
+                          label="Password"
+                          type="password"
+                        />
+                      </div>
+                      <div class="mb-4">
+                        <label for="rol" class="form-label"
+                          >Selecciona un rol de usuario</label
                         >
-                          {{ lr.rol_name }}
-                        </option>
-                      </select>
+                        <select
+                          id="rol"
+                          class="form-select"
+                          :items="listRol"
+                          :fields="fieldsRol"
+                          v-model="rol"
+                        >
+                          <option
+                            v-for="lr in listRol"
+                            v-bind:key="lr.id"
+                            v-bind:value="lr.id"
+                          >
+                            {{ lr.rol_name }}
+                          </option>
+                        </select>
+                        <div class="text-center">
+                          <MaterialButton
+                            class="my-4 mb-2"
+                            variant="gradient"
+                            color="success"
+                            fullWidth
+                            @click= "createUser"
+                            >Registrar</MaterialButton
+                          >
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </form>
