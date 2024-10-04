@@ -347,6 +347,7 @@ onMounted(() => {
               <div class="col-md-7 d-flex flex-column mx-auto mt-4 mt-md-0">
                 <div
                   class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5"
+                  style="margin-top: 60px; margin-left: 30px; padding: 50px 20px 15px 5px; /* arriba, derecha, abajo, izquierda */"
                 >
                   <div
                     class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
@@ -360,8 +361,7 @@ onMounted(() => {
                   <!-- Listado de fumigaciones-->
                   <div class="card-body">
                     <div
-                      class="table-responsive"
-                      style="max-height: 800px; overflow-y: auto; margin-top: 20px;"
+                      class="table-responsive" style="max-height: 600px; overflow-y: auto; margin-top: 10px; margin-left: 15px;"
                     >
                       <table
                         class="table table-striped"
