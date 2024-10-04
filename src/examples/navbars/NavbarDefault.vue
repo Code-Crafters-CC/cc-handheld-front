@@ -2,12 +2,16 @@
 import { RouterLink } from "vue-router";
 import { ref, watch } from "vue";
 import { useWindowsWidth } from "../../assets/js/useWindowsWidth";
-import {useAppStore} from '../../stores/index'
+import {useAppStore} from '@/stores/index';
+import router from "@/router/index";
+import MaterialButton from "@/components/MaterialButton.vue";
 
 // images
 import ArrDark from "@/assets/img/down-arrow-dark.svg";
 import downArrow from "@/assets/img/down-arrow.svg";
 import DownArrWhite from "@/assets/img/down-arrow-white.svg";
+
+const appStore = useAppStore();
 
 const props = defineProps({
   action: {
@@ -79,6 +83,11 @@ if (type.value === "mobile") {
   textDark.value = false;
 }
 
+const salir = async () => {
+  appStore.salir();
+  router.push({ name: 'about'});
+}
+
 watch(
   () => type.value,
   (newValue) => {
@@ -90,6 +99,8 @@ watch(
   }
 );
 </script>
+
+
 <template>
   <nav
     class="navbar navbar-expand-lg top-0"
@@ -205,9 +216,16 @@ watch(
                       <RouterLink
                         :to="{ name: 'contactus' }"
                         class="dropdown-item border-radius-md"
-                        v-if="useAppStore.token"
+                        v-if="appStore.token"
                       >
                         <span>Historial</span>
+                      </RouterLink>
+                      <RouterLink
+                        :to="{ name: 'users' }"
+                        class="dropdown-item border-radius-md"
+                        v-if="appStore.token"
+                      >
+                        <span>Usuarios</span>
                       </RouterLink>
                       <div
                         class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
@@ -899,6 +917,15 @@ watch(
               </div>
             </div>
           </li>
+          <MaterialButton
+            class="my-1 mb-2"
+            variant="contained"
+            color="white"
+            fullWidth
+            @click= "salir"
+            v-if="appStore.token"
+            >Logout</MaterialButton
+          >
         </ul>
       </div>
     </div>
