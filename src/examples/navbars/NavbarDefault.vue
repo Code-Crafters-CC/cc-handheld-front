@@ -223,7 +223,7 @@ watch(
                       <RouterLink
                         :to="{ name: 'controlForm' }"
                         class="dropdown-item border-radius-md"
-                        v-if="useAppStore.token"
+                        v-if="appStore.token"
                         >
                         <span>Fumigaciones</span>
                       </RouterLink>
