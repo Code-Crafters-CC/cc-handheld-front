@@ -68,9 +68,6 @@ onUnmounted(() => {
             <p class="lead mb-4 text-white opacity-8">
               Nos especializamos en tratar con plagas.
             </p>
-            <button type="submit" class="btn bg-white text-dark">
-              Crear Cuenta
-            </button>
           </div>
         </div>
       </div>

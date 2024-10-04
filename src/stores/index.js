@@ -25,7 +25,6 @@ export const useAppStore = defineStore('auth', {
     salir() {
       this.token = null;
       localStorage.removeItem('token');
-      router.push({ name: 'Login' });
     }
   }
 });
