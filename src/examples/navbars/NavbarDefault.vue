@@ -227,6 +227,13 @@ watch(
                       >
                         <span>Usuarios</span>
                       </RouterLink>
+                      <RouterLink
+                        :to="{ name: 'products' }"
+                        class="dropdown-item border-radius-md"
+                        v-if="appStore.token"
+                      >
+                        <span>Productos</span>
+                      </RouterLink>
                       <div
                         class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
                       >
