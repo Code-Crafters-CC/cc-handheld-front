@@ -207,7 +207,14 @@ watch(
                         class="dropdown-item border-radius-md"
                         v-if="useAppStore.token"
                       >
-                        <span>Historial</span>
+                      <span>Historial</span>
+                      </RouterLink>
+                      <RouterLink
+                        :to="{ name: 'controlForm' }"
+                        class="dropdown-item border-radius-md"
+                        v-if="useAppStore.token"
+                        >
+                        <span>Fumigaciones</span>
                       </RouterLink>
                       <div
                         class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
