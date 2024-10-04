@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import router from "../../../router/index";
+import {useAppStore} from '../../../stores/index'
 // example components
 import DefaultNavbar from "@/examples/navbars/NavbarDefault.vue";
 import Header from "@/examples/Header.vue";
@@ -26,7 +27,6 @@ const fields = ref([
 ]);
 
 const fieldsRol = ref(["id", "rol_name", "insert_date"]);
-const id = ref("");
 const first_name = ref("");
 const last_name = ref("");
 const username = ref("");
@@ -36,19 +36,12 @@ const rol = ref("");
 const showLogin = ref(true);
 const showRegister = ref(false);
 const listRol = ref([]);
+const emailLogin = ref("");
+const passwordLogin = ref("");
 
 // Método para crear un usuario
 const createUser = async () => {
   try {
-    console.log({
-      first_name: first_name.value,
-      last_name: last_name.value,
-      username: username.value,
-      email: email.value,
-      password: password.value,
-      rol: rol.value,
-    });
-
     const response = await axios.post("users/", {
       first_name: first_name.value,
       last_name: last_name.value,
@@ -64,6 +57,29 @@ const createUser = async () => {
     console.log(error);
   }
 };
+
+//Método de login
+const login = async () => {
+  try {
+    await axios.post('login/', {
+      email: emailLogin.value,
+      password: passwordLogin.value
+    })
+    .then(response => {
+      const appStore = useAppStore();
+      appStore.guardarToken(response.data); // Llamada directa a la acción
+      router.push({ name: 'about'});
+    })
+
+    // console.log(response.data.access);
+
+    // console.log(appStore.token);
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 // Método para listar roles
 const listarRol = async () => {
@@ -82,31 +98,14 @@ const toggleForms = () => {
   showRegister.value = !showRegister.value;
 };
 
-// Función para manejar el inicio de sesión
-const login = () => {
-  console.log("Iniciar sesión con:", username.value, password.value);
-  // Aquí agregas la lógica real del login
-};
-
-// Función para manejar el registro
-const register = () => {
-  console.log(
-    "Registrar usuario:",
-    newUsername.value,
-    newPassword.value,
-    email.value
-  );
-  // Una vez que el registro es exitoso, volver a mostrar el formulario de login
-  showLogin = true;
-  showRegister = false;
-};
-
 // Ejecutar listarRol cuando se monta el componente
 onMounted(() => {
   setMaterialInput();
   listarRol();
 });
 </script>
+
+
 <template>
   <DefaultNavbar transparent />
   <Header>
@@ -136,63 +135,43 @@ onMounted(() => {
                   >
                     Sign in
                   </h4>
-                  <div class="row mt-3">
-                    <div class="col-2 text-center ms-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-facebook text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center px-1">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-github text-white text-lg"></i>
-                      </a>
-                    </div>
-                    <div class="col-2 text-center me-auto">
-                      <a class="btn btn-link px-3" href="javascript:;">
-                        <i class="fa fa-google text-white text-lg"></i>
-                      </a>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div class="card-body">
-                <form role="form" class="text-start">
-                  <MaterialInput
+                <form role="form" class="text-start" @submit.prevent = "onsubmit">
+                  <label class="form-label">Correo electrónico</label>
+                  <input
                     id="email"
-                    class="input-group-outline my-3"
-                    :label="{ text: 'Email', class: 'form-label' }"
+                    class="my-3 form-control"
+                    label="Correo electrónico"
                     type="email"
+                    v-model="emailLogin"
                   />
-                  <MaterialInput
+                  <label class="form-label">Contraseña</label>
+                  <input
                     id="password"
-                    class="input-group-outline mb-3"
-                    :label="{ text: 'Password', class: 'form-label' }"
+                    class="mb-3 form-control"
+                    label="Contraseña"
                     type="password"
+                    v-model="passwordLogin"
                   />
-                  <MaterialSwitch
-                    class="d-flex align-items-center mb-3"
-                    id="rememberMe"
-                    labelClass="mb-0 ms-3"
-                    checked
-                    >Remember me</MaterialSwitch
-                  >
-
                   <div class="text-center">
                     <MaterialButton
                       class="my-4 mb-2"
                       variant="gradient"
                       color="success"
                       fullWidth
-                      >Sign in</MaterialButton
+                      @click="login"
+                      >Ingresa</MaterialButton
                     >
                   </div>
                   <p class="mt-4 text-sm text-center">
-                    Don't have an account?
+                    ¿No tienes una cuenta?
                     <a
                       href="#"
                       class="text-success text-gradient font-weight-bold"
                       @click="toggleForms"
-                      >Sign up</a
+                      >Registrate</a
                     >
                   </p>
                 </form>
@@ -321,65 +300,6 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <footer class="footer position-absolute bottom-2 py-2 w-100">
-        <div class="container">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-12 col-md-6 my-auto">
-              <div
-                class="copyright text-center text-sm text-white text-lg-start"
-              >
-                © {{ new Date().getFullYear() }}, made with
-                <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a
-                  href="https://www.creative-tim.com"
-                  class="font-weight-bold text-white"
-                  target="_blank"
-                  >Creative Tim</a
-                >
-                for a better web.
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <ul
-                class="nav nav-footer justify-content-center justify-content-lg-end"
-              >
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >Creative Tim</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/presentation"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >About Us</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/blog"
-                    class="nav-link text-white"
-                    target="_blank"
-                    >Blog</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    href="https://www.creative-tim.com/license"
-                    class="nav-link pe-0 text-white"
-                    target="_blank"
-                    >License</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   </Header>
 </template>
