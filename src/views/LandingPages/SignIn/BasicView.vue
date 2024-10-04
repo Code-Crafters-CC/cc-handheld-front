@@ -30,8 +30,9 @@ const id = ref("");
 const first_name = ref("");
 const last_name = ref("");
 const username = ref("");
+const email = ref("");
 const password = ref("");
-const rol = ref(0);
+const rol = ref("");
 const showLogin = ref(true);
 const showRegister = ref(false);
 const listRol = ref([]);
@@ -39,15 +40,26 @@ const listRol = ref([]);
 // Método para crear un usuario
 const createUser = async () => {
   try {
+    console.log({
+      first_name: first_name.value,
+      last_name: last_name.value,
+      username: username.value,
+      email: email.value,
+      password: password.value,
+      rol: rol.value,
+    });
+
     const response = await axios.post("users/", {
       first_name: first_name.value,
       last_name: last_name.value,
       username: username.value,
+      email: email.value,
       password: password.value,
-      rol: rol.value,
+      rol: rol.value
     }); 
-    toggleForms();
     console.log(response);
+
+    toggleForms();
   } catch (error) {
     console.log(error);
   }
@@ -223,40 +235,50 @@ onMounted(() => {
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-6">
-                        <MaterialInput
-                          class="input-group-static mb-4"
+                        <label class="form-label">Nombre</label>
+                        <input
+                          v-model="first_name"
+                          class="form-control"
                           label="First Name"
                           type="text"
-                          placeholder="eg. Thomas"
+                          placeholder="ej. Thomas"
                         />
                       </div>
                       <div class="col-md-6 ps-2">
-                        <MaterialInput
-                          class="input-group-static mb-4"
+                        <label class="form-label">Apellido</label>
+                        <input
+                          v-model="last_name"
+                          class="form-control"
                           label="Last Name"
                           type="text"
-                          placeholder="eg. Shelby"
+                          placeholder="ej. Fuentes"
                         />
                       </div>
                       <div class="col-md-6 ps-2">
-                        <MaterialInput
-                          class="input-group-static mb-4"
+                        <label class="form-label">Username</label>
+                        <input
+                          v-model="username"
+                          class="form-control"
                           label="Username"
                           type="text"
-                          placeholder="eg. Some username"
+                          placeholder="Cualquier username"
                         />
                       </div>
                       <div class="col-md-6 ps-2">
-                        <MaterialInput
-                          class="input-group-static mb-4"
+                        <label class="form-label">Correo</label>
+                        <input
+                          v-model="email"
+                          class="form-control"
                           label="Email Address"
                           type="text"
-                          placeholder="eg. email@gmail.com"
+                          placeholder="ej. email@gmail.com"
                         />
                       </div>
                       <div class="col-md-6 ps-2">
-                        <MaterialInput
-                          class="input-group-static mb-4"
+                        <label class="form-label">Contraseña</label>
+                        <input
+                          v-model="password"
+                          class="form-control"
                           label="Password"
                           type="password"
                         />
@@ -266,11 +288,11 @@ onMounted(() => {
                           >Selecciona un rol de usuario</label
                         >
                         <select
+                          v-model="rol"
                           id="rol"
                           class="form-select"
                           :items="listRol"
                           :fields="fieldsRol"
-                          v-model="rol"
                         >
                           <option
                             v-for="lr in listRol"
