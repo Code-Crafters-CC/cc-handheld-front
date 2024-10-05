@@ -47,22 +47,16 @@ const listProducts = ref([]);
 const listControlMethod = ref([]);
 const listStatus = ref([]);
 
+const clean = async() =>{
+  product_name.value = "";
+  stock.value = "";
+  product_type.value = ""
+}
+
+
 // Método para crear una fumigación
 const createFumigation = async () => {
   try {
-    console.log({
-      client_name: client_name.value,
-      client_phone: client_phone.value,
-      client_dpi: client_dpi.value,
-      fumigation_date: fumigation_date.value,
-      destination_place: destination_place.value,
-      total_products: total_products,
-      plague: plague.value,
-      products: products.value,
-      control_method: control_method.value,
-      status: status.value,
-    });
-
     const response = await axios.post("controlForm/", {
       client_name: client_name.value,
       client_phone: client_phone.value,
@@ -76,6 +70,8 @@ const createFumigation = async () => {
       status: status.value,
     });
     console.log(response);
+    await listarFumigaciones();
+    clean();
   } catch (error) {
     console.log(error);
   }
@@ -361,7 +357,7 @@ onMounted(() => {
                   <!-- Listado de fumigaciones-->
                   <div class="card-body">
                     <div
-                      class="table-responsive" style="max-height: 600px; overflow-y: auto; margin-top: 10px; margin-left: 15px;"
+                      class="table-responsive" style="max-height: 200px; overflow-y: auto; margin-top: 10px; margin-left: 15px;"
                     >
                       <table
                         class="table table-striped"
