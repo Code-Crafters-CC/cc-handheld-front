@@ -25,6 +25,7 @@ import ElTypography from "../layouts/sections/elements/typography/TypographyView
 import ControlForm from "../views/LandingPages/components/ControlForm.vue";
 import ShowUsers from '../views/LandingPages/components/ShowUsers.vue';
 import Products from "../views/LandingPages/components/Products.vue";
+import Plagues from "../views/LandingPages/components/Plagues.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -63,6 +64,11 @@ const router = createRouter({
       path: "/pages/products",
       name: "products",
       component: Products,
+    },
+    {
+      path: "/pages/plagues",
+      name: "plagues",
+      component: Plagues,
     },
     {
       path: "/sections/page-sections/page-headers",

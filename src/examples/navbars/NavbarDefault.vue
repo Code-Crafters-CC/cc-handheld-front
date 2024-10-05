@@ -207,12 +207,15 @@ watch(
                       >
                         Páginas Principales
                       </div>
+                      <!-- Home -->
                       <RouterLink
                         :to="{ name: 'about' }"
                         class="dropdown-item border-radius-md"
                       >
                         <span>Home</span>
                       </RouterLink>
+
+                      <!-- Historial -->
                       <RouterLink
                         :to="{ name: 'contactus' }"
                         class="dropdown-item border-radius-md"
@@ -220,6 +223,8 @@ watch(
                       >
                       <span>Historial</span>
                       </RouterLink>
+
+                      <!-- Fumigaciones -->
                       <RouterLink
                         :to="{ name: 'controlForm' }"
                         class="dropdown-item border-radius-md"
@@ -227,6 +232,8 @@ watch(
                         >
                         <span>Fumigaciones</span>
                       </RouterLink>
+
+                      <!-- Usuarios -->
                       <RouterLink
                         :to="{ name: 'users' }"
                         class="dropdown-item border-radius-md"
@@ -234,6 +241,8 @@ watch(
                       >
                         <span>Usuarios</span>
                       </RouterLink>
+
+                      <!-- Productos -->
                       <RouterLink
                         :to="{ name: 'products' }"
                         class="dropdown-item border-radius-md"
@@ -241,11 +250,23 @@ watch(
                       >
                         <span>Productos</span>
                       </RouterLink>
+
+                      <!-- Plagas -->
+                      <RouterLink
+                        :to="{ name: 'plagues' }"
+                        class="dropdown-item border-radius-md"
+                        v-if="appStore.token"
+                      >
+                        <span>Plagas</span>
+                      </RouterLink>
+
+                      <!-- Divisor -->
                       <div
                         class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-0 mt-3"
                       >
                         Cuenta
                       </div>
+                      <!-- Login -->
                       <RouterLink
                         :to="{ name: 'signin-basic' }"
                         class="dropdown-item border-radius-md"
