@@ -47,12 +47,18 @@ const listProducts = ref([]);
 const listControlMethod = ref([]);
 const listStatus = ref([]);
 
-const clean = async() =>{
-  product_name.value = "";
-  stock.value = "";
-  product_type.value = ""
-}
-
+const clean = async () => {
+  client_name.value = "";
+  client_phone.value = "";
+  client_dpi.value = "";
+  fumigation_date.value = "";
+  destination_place.value = "";
+  total_products.value = "";
+  plague.value = "";
+  products.value = "";
+  control_method.value = "";
+  status.value = "";
+};
 
 // Método para crear una fumigación
 const createFumigation = async () => {
@@ -229,7 +235,9 @@ onMounted(() => {
                             />
                           </div>
                           <div class="col-md-6 ps-2">
-                            <label class="form-label">Fecha de fumigación</label>
+                            <label class="form-label"
+                              >Fecha de fumigación</label
+                            >
                             <input
                               v-model="fumigation_date"
                               class="form-control"
@@ -247,7 +255,9 @@ onMounted(() => {
                             />
                           </div>
                           <div class="col-md-6 ps-2">
-                            <label class="form-label">Cantidad de producto necesaria</label>
+                            <label class="form-label"
+                              >Cantidad de producto necesaria</label
+                            >
                             <input
                               v-model="total_products"
                               class="form-control"
@@ -256,7 +266,9 @@ onMounted(() => {
                             />
                           </div>
                           <div class="mb-4">
-                            <label for="rol" class="form-label">Selecciona una plaga a erradicar</label>
+                            <label for="rol" class="form-label"
+                              >Selecciona una plaga a erradicar</label
+                            >
                             <select
                               v-model="plague"
                               id="plague"
@@ -272,7 +284,9 @@ onMounted(() => {
                                 {{ lp.plague_name }}
                               </option>
                             </select>
-                            <label for="rol" class="form-label">Selecciona un producto</label>
+                            <label for="rol" class="form-label"
+                              >Selecciona un producto</label
+                            >
                             <select
                               v-model="products"
                               id="products"
@@ -288,7 +302,9 @@ onMounted(() => {
                                 {{ lprod.product_name }}
                               </option>
                             </select>
-                            <label for="rol" class="form-label">Selecciona un método de control de plaga</label>
+                            <label for="rol" class="form-label"
+                              >Selecciona un método de control de plaga</label
+                            >
                             <select
                               v-model="control_method"
                               id="controlMethod"
@@ -304,7 +320,9 @@ onMounted(() => {
                                 {{ lcm.control_method_name }}
                               </option>
                             </select>
-                            <label for="rol" class="form-label">Selecciona el status de la fumigación</label>
+                            <label for="rol" class="form-label"
+                              >Selecciona el status de la fumigación</label
+                            >
                             <select
                               v-model="status"
                               id="status"
@@ -343,7 +361,11 @@ onMounted(() => {
               <div class="col-md-7 d-flex flex-column mx-auto mt-4 mt-md-0">
                 <div
                   class="card d-flex blur justify-content-center shadow-lg my-sm-0 my-sm-6 mt-8 mb-5"
-                  style="margin-top: 60px; margin-left: 30px; padding: 50px 20px 15px 5px; /* arriba, derecha, abajo, izquierda */"
+                  style="
+                    margin-top: 60px;
+                    margin-left: 30px;
+                    padding: 50px 20px 15px 5px; /* arriba, derecha, abajo, izquierda */
+                  "
                 >
                   <div
                     class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent"
@@ -357,7 +379,13 @@ onMounted(() => {
                   <!-- Listado de fumigaciones-->
                   <div class="card-body">
                     <div
-                      class="table-responsive" style="max-height: 200px; overflow-y: auto; margin-top: 10px; margin-left: 15px;"
+                      class="table-responsive"
+                      style="
+                        max-height: 200px;
+                        overflow-y: auto;
+                        margin-top: 10px;
+                        margin-left: 15px;
+                      "
                     >
                       <table
                         class="table table-striped"
@@ -374,7 +402,10 @@ onMounted(() => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr v-for="(lf, i) in listFumigations" v-bind:key="lf.id">
+                          <tr
+                            v-for="(lf, i) in listFumigations"
+                            v-bind:key="lf.id"
+                          >
                             <td>{{ lf.id }}</td>
                             <td>{{ lf.client_name }}</td>
                             <td>{{ lf.client_phone }}</td>
@@ -395,4 +426,3 @@ onMounted(() => {
   </section>
   <DefaultFooter />
 </template>
-
