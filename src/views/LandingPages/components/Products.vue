@@ -243,7 +243,9 @@ onMounted(() => {
                                 role="alert"
                                 v-if="lp.stock < 4 && lp.stock > 0"
                               >
-                                Estás por quedarte sin producto!
+                                <div style="color: white; text-align: center">
+                                  Estás por quedarte sin producto!
+                                </div>
                               </div>
                               <div
                                 class="alert-danger"
