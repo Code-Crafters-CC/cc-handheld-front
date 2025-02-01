@@ -11,7 +11,7 @@ import materialKit from "./material-kit";
 
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://pg2umg.pythonanywhere.com/'
+axios.defaults.baseURL = 'http://127.0.0.1:3339/'
 
 const app = createApp(App);
 

@@ -36,7 +36,7 @@ const rol = ref("");
 const showLogin = ref(true);
 const showRegister = ref(false);
 const listRol = ref([]);
-const emailLogin = ref("");
+const userLogin = ref("");
 const passwordLogin = ref("");
 
 // Método para crear un usuario
@@ -61,13 +61,13 @@ const createUser = async () => {
 //Método de login
 const login = async () => {
   try {
-    await axios.post('login/', {
-      email: emailLogin.value,
+    await axios.post('auth/login', {
+      user: userLogin.value,
       password: passwordLogin.value
     })
     .then(response => {
       const appStore = useAppStore();
-      appStore.guardarToken(response.data); // Llamada directa a la acción
+      appStore.guardarToken(response.data.data); // Llamada directa a la acción
       router.push({ name: 'about'});
     })
 
@@ -80,18 +80,6 @@ const login = async () => {
   }
 }
 
-
-// Método para listar roles
-const listarRol = async () => {
-  try {
-    const response = await axios.get("roles/");
-    listRol.value = response.data;
-    console.log(listRol.value);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 // Función para alternar entre los formularios
 const toggleForms = () => {
   showLogin.value = !showLogin.value;
@@ -101,7 +89,6 @@ const toggleForms = () => {
 // Ejecutar listarRol cuando se monta el componente
 onMounted(() => {
   setMaterialInput();
-  listarRol();
 });
 </script>
 
@@ -145,7 +132,7 @@ onMounted(() => {
                     class="my-3 form-control"
                     label="Correo electrónico"
                     type="email"
-                    v-model="emailLogin"
+                    v-model="userLogin"
                   />
                   <label class="form-label">Contraseña</label>
                   <input
