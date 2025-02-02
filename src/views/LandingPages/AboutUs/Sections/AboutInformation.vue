@@ -15,7 +15,7 @@ const appStore = useAppStore();
               color="success"
               icon="hail"
               title="RECEPCIÓN"
-              description="Registra y organiza a los jugadores"
+              description="Recepciona los pedidos"
             />
             <router-link :to="{ name: '' }">
               <button
@@ -23,22 +23,22 @@ const appStore = useAppStore();
                 class="btn btn-dark btn-sm"
                 style="width: 200px; height: 50px"
               >
-                Agregar
+                Recibir
               </button>
             </router-link>
             <DefaultInfoCard
               color="info"
               icon="people"
               title="TRASLADO"
-              description="Crea y organiza a tus equipos"
+              description="Traslada productos entre bodegas"
             />
-            <router-link :to="{ name: '' }">
+            <router-link :to="{ name: 'controlForm' }">
               <button
                 type="button"
                 class="btn btn-dark btn-sm"
                 style="width: 200px; height: 50px"
               >
-                Crear
+                Crear traslado
               </button>
             </router-link>
           </div>
@@ -49,7 +49,7 @@ const appStore = useAppStore();
               color="info"
               icon="groups"
               title="PRODUCTO"
-              description="Organiza a tus equipos y a sus jugadores"
+              description="Organiza tus productos"
             />
             <router-link :to="{ name: '' }">
               <button
@@ -64,7 +64,7 @@ const appStore = useAppStore();
               color="info"
               icon="equalizer"
               title="AUDITAR"
-              description="Observa las estadisticas de los partidos"
+              description="Observa las estadisticas de las bodegas y productos"
             />
             <router-link :to="{ name: '' }">
               <button
@@ -72,7 +72,7 @@ const appStore = useAppStore();
                 class="btn btn-dark btn-sm"
                 style="width: 200px; height: 50px"
               >
-                Estadisicas
+                Estadisticas
               </button>
             </router-link>
           </div>

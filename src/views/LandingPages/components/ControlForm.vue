@@ -16,9 +16,19 @@ import MaterialButton from "@/components/MaterialButton.vue";
 // material-input
 import setMaterialInput from "@/assets/js/material-input";
 
-const fieldsCellarsA = ref(["id", "descripcion"]);
+const fieldsCellarsA = ref([
+  "id: { 'codigo', 'empresa' }", "descripcion",
+                "ubicacion",
+                "tipo",
+                "centro",
+                "cuenta",
+                "limite",
+                "estatus",
+                "bodegaTipoEntity",
+                "cargaTipoEntity"
+]);
 const fieldsCellarsB = ref(["id", "descripcion"]);
-const fieldsProducts = ref(["id", "descripcion"]);
+const fieldsProducts = ref(["id_producto", "descripcion"]);
 const fieldsTipo = ref(["id", "tipo_name"]);
 
 const cellarA = ref("");
@@ -45,14 +55,14 @@ const clean = async () => {
 };
 
 // Método para crear una fumigación
-const createFumigation = async () => {
+const createTransfer = async () => {
   try {
     const response = await axios.post("move/createTransfer", {
       empresa: cellarA.value,
       sucursal: cellarB.value,
       tipo: tipo.value,
-      codigoProducto: products.value,
-      numero: numero.value,
+      codigoProducto: parseInt(products.value),
+      numero: parseInt(numero.value),
     });
     console.log(response);
     clean();
@@ -65,8 +75,9 @@ const createFumigation = async () => {
 const listarCellars = async () => {
   try {
     const response = await axios.get("/cellar/list");
-    listCellarA.value = response.data.data;
-    listCellarB.value = response.data.data;
+    console.log(response.data.data.cellars);
+    listCellarA.value = response.data.data.cellars;
+    listCellarB.value = response.data.data.cellars;
     console.log(listCellarA.value);
     console.log(listCellarB.value);
   } catch (error) {
@@ -167,8 +178,8 @@ onMounted(() => {
                             >
                               <option
                                 v-for="lp in listCellarA"
-                                v-bind:key="lp.id"
-                                v-bind:value="lp.id"
+                                v-bind:key="lp.id.codigo"
+                                v-bind:value="lp.id.codigo"
                               >
                                 {{ lp.descripcion }}
                               </option>
@@ -187,8 +198,8 @@ onMounted(() => {
                             >
                               <option
                                 v-for="lc in listCellarB"
-                                v-bind:key="lc.id"
-                                v-bind:value="lc.id"
+                                v-bind:key="lc.id.codigo"
+                                v-bind:value="lc.id.codigo"
                               >
                                 {{ lc.descripcion }}
                               </option>
@@ -207,8 +218,8 @@ onMounted(() => {
                             >
                               <option
                                 v-for="lprod in listProducts"
-                                v-bind:key="lprod.id"
-                                v-bind:value="lprod.id"
+                                v-bind:key="lprod.id_producto"
+                                v-bind:value="lprod.id_producto"
                               >
                                 {{ lprod.descripcion }}
                               </option>
@@ -248,7 +259,7 @@ onMounted(() => {
                                 variant="gradient"
                                 color="success"
                                 fullWidth
-                                @click="createFumigation"
+                                @click="createTransfer"
                               >
                                 Registrar
                               </MaterialButton>
