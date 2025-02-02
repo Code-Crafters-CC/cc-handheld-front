@@ -120,19 +120,6 @@ watch(
           : 'container-fluid px-0'
       "
     >
-      <RouterLink
-        class="navbar-brand d-none d-md-block"
-        :class="[
-          (props.transparent && textDark.value) || !props.transparent
-            ? 'text-dark font-weight-bolder ms-sm-3'
-            : 'text-white font-weight-bolder ms-sm-3'
-        ]"
-        :to="{ name: 'about' }"
-        rel="tooltip"
-        data-placement="bottom"
-      >
-        FUMIGACIONES
-      </RouterLink>
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
