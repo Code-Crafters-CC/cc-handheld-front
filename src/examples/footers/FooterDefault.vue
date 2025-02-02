@@ -23,10 +23,7 @@ defineProps({
             <p class="text-dark my-4 text-sm font-weight-normal">
               All rights reserved. Copyright ©
               {{ new Date().getFullYear() }}
-              FUMIGATION SYSTEM by
-              <a href="https://www.facebook.com/christian.requena.79" target="_blank"
-                >Cristian Requena</a
-              >.
+              Estrella SYSTEM
             </p>
           </div>
         </div>
