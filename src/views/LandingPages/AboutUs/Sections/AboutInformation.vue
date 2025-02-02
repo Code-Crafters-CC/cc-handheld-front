@@ -2,6 +2,7 @@
 // example components
 import DefaultInfoCard from "../../../../examples/cards/infoCards/DefaultInfoCard.vue";
 </script>
+
 <template>
   <section class="py-7">
     <div class="container">
@@ -9,33 +10,45 @@ import DefaultInfoCard from "../../../../examples/cards/infoCards/DefaultInfoCar
         <div class="col-lg-6">
           <div class="row justify-content-start">
             <DefaultInfoCard
-              color="info"
-              icon="public"
-              title="Comprometidos con el planeta"
-              description="Utilizamos productos amigables con el medio ambiente"
+              color="success"
+              icon="hail"
+              title="Ingresar jugadores"
+              description="Registra y organiza a los jugadores"
             />
+            <router-link :to="{ name: '' }">
+              <button type="button" class="btn btn-dark btn-sm" style="width: 400px; height: 50px;">Agregar</button>
+            </router-link>
             <DefaultInfoCard
               color="info"
-              icon="payments"
-              title="Amigable con tu bolcillo"
-              description="Tenemos los mejores precios del mercado"
+              icon="people"
+              title="Crear equipo"
+              description="Crea y organiza a tus equipos"
             />
+            <router-link :to="{ name: '' }">
+              <button type="button" class="btn btn-dark btn-sm" style="width: 400px; height: 50px;">Crear</button>
+            </router-link>
           </div>
         </div>
         <div class="col-lg-4 ms-auto mt-lg-0 mt-6">
           <div class="row justify-content-start mt-4">
             <DefaultInfoCard
               color="info"
-              icon="apps"
-              title="Bien Organizados"
-              description="Con años de experiencia en el mercado, sabemos cómo actuar contra las alimañas"
+              icon="groups"
+              title="Ver Equipos"
+              description="Organiza a tus equipos y a sus jugadores"
             />
+            <router-link :to="{ name: '' }">
+              <button type="button" class="btn btn-dark btn-sm" style="width: 400px; height: 50px;">Ver</button>
+            </router-link>
             <DefaultInfoCard
               color="info"
-              icon="3p"
-              title="De rápida respuesta"
-              description="Nuestros expertos se contactarán contigo en menos tiempo del que te imaginas"
+              icon="equalizer"
+              title="Ver estadisticas"
+              description="Observa las estadisticas de los partidos"
             />
+            <router-link :to="{ name: '' }">
+              <button type="button" class="btn btn-dark btn-sm" style="width: 400px; height: 50px;">Estadisicas</button>
+            </router-link>
           </div>
         </div>
       </div>
