@@ -78,7 +78,7 @@ const appStore = useAppStore();
           </div>
         </div>
       </div>
-      <div class="row align-items-center" v-else>
+      <div class="row d-flex justify-content-center align-items-center text-center" v-else>
         <DefaultInfoCard
           color="success"
           icon="login"
