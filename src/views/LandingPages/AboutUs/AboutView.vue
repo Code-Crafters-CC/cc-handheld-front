@@ -6,7 +6,7 @@ import DefaultNavbar from "../../../examples/navbars/NavbarDefault.vue";
 import DefaultFooter from "../../../examples/footers/FooterDefault.vue";
 
 //image
-import bg0 from "@/assets/img/vue-mk-header.jpg";
+import bg0 from "@/assets/img/vr-bg.jpg";
 
 //dep
 import Typed from "typed.js";
@@ -58,16 +58,8 @@ onUnmounted(() => {
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center mx-auto my-auto">
             <h1 class="text-white">
-              Adiós a <span class="text-white" id="typed"></span>
+              Sistema Estrella
             </h1>
-            <div id="typed-strings">
-              <h1>las plagas</h1>
-              <h1>las alimañas</h1>
-              <h1>los problemas</h1>
-            </div>
-            <p class="lead mb-4 text-white opacity-8">
-              Nos especializamos en tratar con plagas.
-            </p>
           </div>
         </div>
       </div>
