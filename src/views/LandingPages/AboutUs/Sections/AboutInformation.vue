@@ -1,7 +1,7 @@
 <script setup>
 // example components
 import DefaultInfoCard from "../../../../examples/cards/infoCards/DefaultInfoCard.vue";
-import {useAppStore} from '@/stores/index';
+import { useAppStore } from "@/stores/index";
 const appStore = useAppStore();
 </script>
 
@@ -18,7 +18,13 @@ const appStore = useAppStore();
               description="Registra y organiza a los jugadores"
             />
             <router-link :to="{ name: '' }">
-              <button type="button" class="btn btn-dark btn-sm" style="width: 200px; height: 50px;">Agregar</button>
+              <button
+                type="button"
+                class="btn btn-dark btn-sm"
+                style="width: 200px; height: 50px"
+              >
+                Agregar
+              </button>
             </router-link>
             <DefaultInfoCard
               color="info"
@@ -27,7 +33,13 @@ const appStore = useAppStore();
               description="Crea y organiza a tus equipos"
             />
             <router-link :to="{ name: '' }">
-              <button type="button" class="btn btn-dark btn-sm" style="width: 200px; height: 50px;">Crear</button>
+              <button
+                type="button"
+                class="btn btn-dark btn-sm"
+                style="width: 200px; height: 50px"
+              >
+                Crear
+              </button>
             </router-link>
           </div>
         </div>
@@ -40,7 +52,13 @@ const appStore = useAppStore();
               description="Organiza a tus equipos y a sus jugadores"
             />
             <router-link :to="{ name: '' }">
-              <button type="button" class="btn btn-dark btn-sm" style="width: 200px; height: 50px;">Ver</button>
+              <button
+                type="button"
+                class="btn btn-dark btn-sm"
+                style="width: 200px; height: 50px"
+              >
+                Ver
+              </button>
             </router-link>
             <DefaultInfoCard
               color="info"
@@ -49,10 +67,33 @@ const appStore = useAppStore();
               description="Observa las estadisticas de los partidos"
             />
             <router-link :to="{ name: '' }">
-              <button type="button" class="btn btn-dark btn-sm" style="width: 200px; height: 50px;">Estadisicas</button>
+              <button
+                type="button"
+                class="btn btn-dark btn-sm"
+                style="width: 200px; height: 50px"
+              >
+                Estadisicas
+              </button>
             </router-link>
           </div>
         </div>
+      </div>
+      <div class="row d-flex justify-content-center align-items-center text-center" v-else>
+        <DefaultInfoCard
+          color="success"
+          icon="login"
+          title="LOGIN"
+          description="Inicia sesión para usar la herramienta"
+        />
+        <router-link :to="{ name: 'signin-basic' }">
+          <button
+            type="button"
+            class="btn btn-dark btn-sm"
+            style="width: 200px; height: 50px"
+          >
+            Login
+          </button>
+        </router-link>
       </div>
     </div>
   </section>
